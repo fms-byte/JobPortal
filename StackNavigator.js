@@ -31,7 +31,7 @@ const StackNavigator = () => {
           }}
         />
 
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Jobs"
           component={JobScreen}
           options={{
@@ -59,16 +59,16 @@ const StackNavigator = () => {
                 <Ionicons name="person-outline" size={24} color="black" />
               ),
           }}
-        />
+        /> */}
       </Tab.Navigator>
     );
   }
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown:false}} />
+        {/* <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown:false}} />
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/> */}
         <Stack.Screen name="Main" component={BottomTabs} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
