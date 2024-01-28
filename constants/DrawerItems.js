@@ -1,17 +1,38 @@
 export default [
     {
         name:'Home',
-        iconType:'FontAwesome5',
+        screenName:'Home',
+        iconType:'MaterialIcons',
         iconName:'home'
     },
     {
         name:'Profile',
-        iconType:'FontAwesome5',
+        screenName:'Profile',
+        iconType:'Feather',
         iconName:'user'
     },
     {
+        name:'Post a Job',
+        screenName:'JobPost',
+        iconType:'MaterialIcons',
+        iconName:'post-add'
+    },
+    {
         name:'Settings',
-        iconType:'Feather',
+        screenName:'Settings',
+        iconType:'MaterialIcons',
         iconName:'settings'
+    },
+    {
+        name:'About',
+        screenName:'About',
+        iconType:'Feather',
+        iconName:'info'
+    },
+    {
+        name:'Logout',
+        screenName:'Logout',
+        iconType:'Feather',
+        iconName:'log-out'
     },
  ]

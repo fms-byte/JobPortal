@@ -15,7 +15,11 @@ import HomeScreen from "./screens/HomeScreen";
 import Header from "./components/Header";
 import ProfileScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import SearchScreen from "./screens/SearchScreen";
 import DrawerItems from "./constants/DrawerItems";
+import JobPostForm from "./components/jobPost/JobPostForm";
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -24,52 +28,17 @@ const StackNavigator = () => {
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        drawerType="front"
-        initialRouteName="Home"
-        screenOptions={{
-          activeTintColor: "#e91e63",
-          itemStyle: { marginVertical: 0 },
-        }}
-      >
-        {/* <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown:false}} />
+      <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/> */}
-        {DrawerItems.map((drawer) => (
-          <Drawer.Screen
-            key={drawer.name}
-            name={drawer.name}
-            options={{
-              drawerIcon: ({ focused }) =>
-                drawer.iconType === "Feather" ? (
-                  <Feather
-                    name={drawer.iconName}
-                    size={24}
-                    color={focused ? "#e91e63" : "black"}
-                  />
-                ) : (
-                  <FontAwesome5
-                    name={drawer.iconName}
-                    size={24}
-                    color={focused ? "#e91e63" : "black"}
-                  />
-                ),
-              headerShown: true,
-              header: () => {
-                const title = drawer.name;
-                return <Header screen={title} />;
-              },
-            }}
-            component={
-              drawer.name === "Home"
-                ? HomeScreen
-                : drawer.name === "Profile"
-                ? ProfileScreen
-                : SettingsScreen
-            }
-          />
-        ))}
-      </Drawer.Navigator>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Profile" component={ProfileScreen}/>
+        <Stack.Screen name="Settings" component={SettingsScreen}/>
+        <Stack.Screen name="Search" component={SearchScreen}/>
+        <Stack.Screen name="JobPost" component={JobPostForm}/>
+        
+        
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

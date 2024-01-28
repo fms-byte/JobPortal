@@ -6,51 +6,87 @@ import {
   View,
   ScrollView,
   Button,
+  DrawerLayoutAndroid,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-import CustomHeaderButton from "../components/common/header/CustomHeaderButton";
+import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
 import DrawerScreen from "./DrawerScreen";
+import Welcome from "../components/welcome/Welcome";
+import PopularJob from "../components/popular/PopularJob";
+import NearbyJobs from "../components/nearby/NearbyJobs";
+import JobPostForm from "../components/jobPost/JobPostForm";
+import { COLORS, FONT, SIZES, icons } from "../constants/index";
 
 const HomeScreen = () => {
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [searchTerm, setSearchTerm] = useState("");
+  const drawer = useRef(null);
 
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerShown: true,
-  //     headerStyle: { backgroundColor: "white" },
-  //     headerShadowVisible: false,
-  //     headerTitle: "",
-  //     headerLeft: () => (
-  //       <CustomHeaderButton
-  //         title=""
-  //         iconName="bars" // Dynamically pass the icon name
-  //         onPress={() => {
-  //           console.log("Menu");
-  //         }}
-  //       />
-  //     ),
-  //     headerRight: () => (
-  //       <CustomHeaderButton
-  //         title=""
-  //         iconName="user" // Dynamically pass the icon name
-  //         onPress={() => {
-  //           console.log("Profile");
-  //         }}
-  //       />
-  //     ),
-  //   });
-  // }, []);
+  const navigationView = () => (
+    <View style={[styles.container, styles.navigationContainer]}>
+      <DrawerScreen />
+      {/* <Button
+        title="Close drawer"
+        onPress={() => drawer.current.closeDrawer()}
+      /> */}
+    </View>
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      headerStyle: { backgroundColor: COLORS.lightWhite },
+      headerShadowVisible: false,
+      headerTitle: "",
+      headerLeft: () => (
+        <ScreenHeaderBtn
+          iconUrl={icons.menu}
+          dimension="60%"
+          handlePress={() => {
+            console.log("menu");
+            drawer.current.openDrawer();
+          }}
+        />
+      ),
+      headerRight: () => (
+        <ScreenHeaderBtn
+          iconUrl={icons.profile}
+          dimension="70%"
+          handlePress={() => {
+            console.log("profile");
+            navigation.navigate("Profile");
+          }}
+        />
+      ),
+    });
+  }, [navigation]);
 
   return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "gray" }}>
+    <DrawerLayoutAndroid
+      ref={drawer}
+      drawerWidth={300}
+      drawerPosition={"left"}
+      renderNavigationView={navigationView}
+    >
+      <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, padding: "10px" }}>
-            <Text> HomeScreen </Text>
+          <View style={{ flex: 1, padding: SIZES.medium }}>
+            <Welcome
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              handleClick={() => {
+                if (searchTerm) {
+                  navigation.navigate("Search", { searchTerm });
+                  //setSearchTerm = null;
+                }
+              }}
+            />
+            <PopularJob />
+            <NearbyJobs />
           </View>
         </ScrollView>
       </SafeAreaView>
+    </DrawerLayoutAndroid>
   );
 };
 

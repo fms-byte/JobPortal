@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from "react-native";
 import { ModalPortal } from "react-native-modals";
 import { Provider } from "react-redux";
 import StackNavigator from "./StackNavigator";
+import DrawerNavigator from "./DrawerNavigator";
 import store from "./store";
 
 export default function App() {
   return (
     <>
       <Provider store={store}>
+        <StatusBar style="auto" />
         <StackNavigator />
+        {/* <DrawerNavigator /> */}
         <ModalPortal />
       </Provider>
     </>
