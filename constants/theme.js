@@ -10,10 +10,14 @@ const COLORS = {
   lightWhite: "#FAFAFC",
 };
 
+// import DMRegular from "../assets/fonts/DMSans-Regular.ttf";
+// import DMBold from "../assets/fonts/DMSans-Bold.ttf";
+// import DMMedium from "../assets/fonts/DMSans-Medium.ttf";
+
 const FONT = {
-  regular: "DMRegular",
-  medium: "DMMedium",
-  bold: "DMBold",
+  regular: "DMSans-Regular",
+  medium: "DMSans-Medium",
+  bold: "DMSans-Bold",
 };
 
 const SIZES = {

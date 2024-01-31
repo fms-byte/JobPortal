@@ -4,7 +4,7 @@ import {
   View,
   ActivityIndicator,
   Pressable,
-  FlatList
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -38,10 +38,13 @@ const NearbyJobs = () => {
   }, []);
 
   const renderNearbyJobs = ({ item }) => {
+    const jobId = item.id;
     return (
       <NearbyJobCard
         item={item}
-        onPress={() => navigation.navigate("JobDetails", { jobId: item.id })}
+        onPress={() => {
+          navigation.navigate("JobDetails", { jobId });
+        }}
       />
     );
   };

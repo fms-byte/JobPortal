@@ -20,6 +20,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import SearchScreen from "./screens/SearchScreen";
 import DrawerItems from "./constants/DrawerItems";
 import JobPostForm from "./components/jobPost/JobPostForm";
+import JobDetailsScreen from "./screens/JobDetailsScreen";
 
 const StackNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -36,7 +37,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Settings" component={SettingsScreen}/>
         <Stack.Screen name="Search" component={SearchScreen}/>
         <Stack.Screen name="JobPost" component={JobPostForm}/>
-        
+        <Stack.Screen name="JobDetails" component={JobDetailsScreen}/>        
         
       </Stack.Navigator>
     </NavigationContainer>
