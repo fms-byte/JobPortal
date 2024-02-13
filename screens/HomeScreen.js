@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button,
   DrawerLayoutAndroid,
+  RefreshControl,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeaderBtn from "../components/common/header/ScreenHeaderBtn";
@@ -61,6 +62,16 @@ const HomeScreen = () => {
     });
   }, [navigation]);
 
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    // wait 2 seconds and set refreshing to false
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
     <DrawerLayoutAndroid
       ref={drawer}
@@ -69,7 +80,9 @@ const HomeScreen = () => {
       renderNavigationView={navigationView}
     >
       <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
           <View style={{ flex: 1, padding: SIZES.medium }}>
             <Welcome
               searchTerm={searchTerm}

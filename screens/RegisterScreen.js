@@ -167,14 +167,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   registerButton: {
-    backgroundColor: "#007BFF",
+    backgroundColor: "#FF7754",
     padding: 10,
     borderRadius: 5,
     width: "80%",
     marginBottom: 10,
   },
   createAccountButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#312651",
     padding: 10,
     borderRadius: 5,
     width: "80%",

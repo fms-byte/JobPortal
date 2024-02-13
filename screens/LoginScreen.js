@@ -8,6 +8,7 @@ import {
   TextInput,
   Pressable,
   ToastAndroid,
+  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -58,38 +59,43 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#999"
-        />
-        <TextInput
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="#999"
-          secureTextEntry
-        />
+      <View>
+        <Image style={styles.logo} source={require("../assets/icon.png")} />
       </View>
+      <View style={styles.form}>
+        <Text style={styles.title}>Login</Text>
 
-      <Pressable onPress={handleLoginPress} style={styles.loginButton}>
-        <Text style={styles.buttonText}>Login</Text>
-      </Pressable>
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#999"
+          />
+          <TextInput
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#999"
+            secureTextEntry
+          />
+        </View>
 
-      <Text style={styles.or}>OR</Text>
+        <Pressable onPress={handleLoginPress} style={styles.loginButton}>
+          <Text style={styles.buttonText}>Login</Text>
+        </Pressable>
 
-      <Pressable
-        onPress={() => navigation.navigate("Register")}
-        style={styles.createAccountButton}
-      >
-        <Text style={styles.buttonText}>Create an Account</Text>
-      </Pressable>
+        <Text style={styles.or}>OR</Text>
+
+        <Pressable
+          onPress={() => navigation.navigate("Register")}
+          style={styles.createAccountButton}
+        >
+          <Text style={styles.buttonText}>Create an Account</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
@@ -100,6 +106,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
+  },
+  form: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginBottom: 10,
+    marginTop: -10,
   },
   title: {
     fontSize: 24,
@@ -119,14 +136,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   loginButton: {
-    backgroundColor: "#007BFF",
+    backgroundColor: "#FF7754",
     padding: 10,
     borderRadius: 5,
     width: "80%",
     marginBottom: 10,
   },
   createAccountButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#312651",
     padding: 10,
     borderRadius: 5,
     width: "80%",
