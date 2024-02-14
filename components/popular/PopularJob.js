@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, FlatList, ActivityIndicator } from "
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, limit, query } from "firebase/firestore";
 
 import { COLORS, FONT, SIZES } from "../../constants/index";
 import PopularJobCard from "./PopularJobCard";
@@ -15,7 +15,7 @@ const PopularJob = () => {
   useEffect(() => {
     const fetchPopularJobs = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "jobs"));
+        const querySnapshot = await getDocs(query(collection(db, "jobs"), orderBy("postedDate", "desc"), limit(5)));
         const jobsData = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -44,7 +44,7 @@ const PopularJob = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular Jobs</Text>
-        <Pressable onPress={() => navigation.navigate("AllJobs")}>
+        <Pressable onPress={() => navigation.navigate("AllJobs", {table: "jobs", name: "All Popular Jobs"})}>
           <Text style={styles.headerBtn}>View all</Text>
         </Pressable>
       </View>
@@ -59,7 +59,7 @@ const PopularJob = () => {
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: SIZES.medium }}
+            contentContainerStyle={{ paddingHorizontal: SIZES.medium, columnGap: SIZES.medium }}
           />
         )}
       </View>
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: SIZES.medium,
   },
   headerTitle: {
     fontSize: SIZES.large,

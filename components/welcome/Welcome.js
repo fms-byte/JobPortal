@@ -1,15 +1,44 @@
-import { StyleSheet, Text, View, TextInput, Image, FlatList, Pressable } from 'react-native'
-import React, { useState }from 'react';
+import { StyleSheet, Text, View, TextInput, Image, FlatList, Pressable, ActivityIndicator } from 'react-native'
+import React, { useState, useEffect }from 'react';
 import { COLORS, FONT, SIZES, icons, Types } from "../../constants/index";
 import { useNavigation } from "@react-navigation/native";
+import { db, auth } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
     const navigation = useNavigation();
     const [activeJobType, setActiveJobType] = useState('Full-time');
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "users"));
+          querySnapshot.forEach((doc) => {
+            if (doc.data().email === auth.currentUser.email) {
+              setUser(doc.data());
+              setLoading(false);
+            }
+          });
+        } catch (error) {
+          console.error("Error getting documents: ", error);
+        }
+      };
+
+      fetchData();
+
+    }, []);
+
+    if (loading) {
+      return <ActivityIndicator size="large" color={COLORS.primary} />;
+    }
+
+
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.userName}>Hello Farhan</Text>
+        <Text style={styles.userName}>Hello {user?.firstname}</Text>
         <Text style={styles.welcomeMessage}>Find your perfect job</Text>
       </View>
       <View style={styles.searchContainer}>

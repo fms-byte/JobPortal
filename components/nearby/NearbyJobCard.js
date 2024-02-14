@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
+    marginBottom: SIZES.small,
   },
   logoContainer: {
     width: 50,

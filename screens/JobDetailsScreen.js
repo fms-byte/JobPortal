@@ -72,7 +72,7 @@ const JobDetailsScreen = ({ route }) => {
         <ScreenHeaderBtn
           iconUrl={icons.chevronLeft}
           dimension="60%"
-          handlePress={() => navigation.replace("Home")}
+          handlePress={() => navigation.goBack()}
         />
       ),
       headerRight: () => (

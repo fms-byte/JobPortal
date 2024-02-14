@@ -4,7 +4,7 @@ import React from 'react'
 const SettingsScreen = () => {
   return (
     <View>
-      <Text>SettingsScreen</Text>
+      <Text>Coming Soon...</Text>
     </View>
   )
 }

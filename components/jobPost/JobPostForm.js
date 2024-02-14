@@ -29,6 +29,7 @@ const JobPostForm = () => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [requirements, setRequirements] = useState([]);
+  const [responsibilities, setResponsibilities] = useState([]);
   const [salary, setSalary] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [image, setImage] = useState("");
@@ -79,7 +80,7 @@ const JobPostForm = () => {
       requirements === "" ||
       salary === "" ||
       expirationDate === "" ||
-      image === "" ||
+      responsibilities === "" ||
       selectedJobType === ""
     ) {
       ToastAndroid.show("Please Enter all the credentials", ToastAndroid.SHORT);
@@ -96,6 +97,7 @@ const JobPostForm = () => {
       location: location,
       description: description,
       requirements: requirements,
+      responsibilities: responsibilities,
       salary: salary,
       postedDate: postedDate,
       expirationDate: date,
@@ -109,6 +111,7 @@ const JobPostForm = () => {
     setLocation("");
     setDescription("");
     setRequirements("");
+    setResponsibilities("");
     setSalary("");
     setExpirationDate("");
     setImage("");
@@ -178,6 +181,22 @@ const JobPostForm = () => {
           />
         </View>
         <View style={styles.inputContainer}>
+          <Text style={styles.label}>Responsibilities</Text>
+          <TextInput
+            style={styles.input}
+            value={responsibilities.join(", ")}
+            onChangeText={(text) =>
+              setResponsibilities(
+                text
+                  .trim()
+                  .split(",")
+                  .map((item) => item.trim())
+              )
+            }
+            placeholder="Enter responsibilities"
+          />
+        </View>
+        <View style={styles.inputContainer}>
           <Text style={styles.label}>Salary</Text>
           <TextInput
             style={styles.input}
@@ -223,7 +242,7 @@ const JobPostForm = () => {
             style={styles.input}
             value={image}
             onChangeText={(text) => setImage(text)}
-            placeholder="Enter image link"
+            placeholder="Enter image link (optional)"
           />
         </View>
         {/* drop down of Types */}

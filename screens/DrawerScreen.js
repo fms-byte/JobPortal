@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, ToastAndroid } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5, Feather } from "@expo/vector-icons";
@@ -16,6 +16,7 @@ const DrawerScreen = () => {
   const handleSignOut = async () => {
     try {
       await auth.signOut();
+      ToastAndroid.show("Signed out successfully", ToastAndroid.SHORT);
       navigation.replace("Login");
     } catch (error) {
       console.error("Error signing out:", error);

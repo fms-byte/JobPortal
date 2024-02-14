@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { COLORS, FONT, SIZES, icons, Types } from "../../constants/index";
 import NearbyJobCard from "./NearbyJobCard";
 
@@ -21,7 +21,9 @@ const NearbyJobs = () => {
   useEffect(() => {
     const fetchNearbyJobs = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "jobs"));
+        const querySnapshot = await getDocs(
+          query(collection(db, "jobs"), orderBy("postedDate", "desc"), limit(5))
+        );
         const jobsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -52,10 +54,10 @@ const NearbyJobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nearby Jobs</Text>
+        <Text style={styles.headerTitle}>Latest Jobs</Text>
         <Pressable
           onPress={() => {
-            navigation.navigate("Nearby");
+            navigation.navigate("AllJobs", {table: "jobs", name: "All Latest Jobs"});
           }}
         >
           <Text style={styles.headerBtn}>View all</Text>

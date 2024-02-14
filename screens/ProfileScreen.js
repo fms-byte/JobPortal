@@ -43,10 +43,6 @@ const ProfileScreen = () => {
     }
   };
 
-  const handleViewAll = () => {
-    console.log("View all");
-  };
-
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -146,7 +142,7 @@ const ProfileScreen = () => {
       <View style={styles.profileContainer1}>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>Applied Jobs Information</Text>
-          <Pressable style={styles.viewAllBtn} onPress={handleViewAll}>
+          <Pressable style={styles.viewAllBtn} onPress={() => navigation.navigate("AllJobs", { table: "appliedJobs", name: "All applied Jobs" })}>
             <Text style={styles.viewAllBtnText}>View all</Text>
           </Pressable>
         </View>
@@ -162,7 +158,7 @@ const ProfileScreen = () => {
       <View style={styles.profileContainer2}>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>Posted Jobs Information</Text>
-          <Pressable style={styles.viewAllBtn} onPress={handleViewAll}>
+          <Pressable style={styles.viewAllBtn} onPress={() => navigation.navigate("AllJobs", { table: "postedJobs", name: "All Posted Jobs" })}>
             <Text style={styles.viewAllBtnText}>View all</Text>
           </Pressable>
         </View>
@@ -178,7 +174,7 @@ const ProfileScreen = () => {
       <View style={styles.profileContainer3}>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>Saved Jobs Information</Text>
-          <Pressable style={styles.viewAllBtn} onPress={handleViewAll}>
+          <Pressable style={styles.viewAllBtn} onPress={() => navigation.navigate("AllJobs", { table: "savedJobs", name: "All Saved Jobs" })}>
             <Text style={styles.viewAllBtnText}>View all</Text>
           </Pressable>
         </View>
