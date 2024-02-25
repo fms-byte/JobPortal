@@ -35,11 +35,11 @@ const AboutScreen = () => {
       <Text style={styles.description}>
         Explore thousands of job opportunities and take your career to new heights.
       </Text>
-      <Text style={styles.description}>
+      {/* <Text style={styles.description}>
         Developed by: Md. Farhan Masud Shohag {"\n"}
         Contact: fsh69711@gmail.com {"\n"}
         GitHub: github.com/fms-byte
-      </Text>
+      </Text> */}
     </View>
   );
 };
